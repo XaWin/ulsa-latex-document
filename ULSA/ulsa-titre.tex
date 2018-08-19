@@ -1,0 +1,66 @@
+% require : mdframe
+% require : datatools
+
+\newcommand{\HRule}{\textcolor{ulsa}{\rule{\linewidth}{0.5mm}}}
+\newmdenv[leftline=false,rightline=false,linecolor=ulsa,innertopmargin=1cm,innerbottommargin=1cm]{topbot}
+
+\import{./}{Infos.tex}
+\begin{titlepage} % Start of page
+\begin{figure}[!h]
+\begin{center}
+ \begin{minipage}[t]{0.5\textwidth}
+    \includegraphics[valign=t,width=0.75\linewidth]{ULSA/Exts/logo2.png}%
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+    \begin{flushleft}
+        \vspace{0.5cm}
+        \TitleHeader{Unidistance Law Student Association}\\[0.5cm]
+        \large
+        \SubtitleHeader{Module \getTitleOption{module}}\\
+        \SubtitleHeader{\getTitleOption{moduleName}}\\[0.5cm]
+        \SubtitleHeader{\getTitleOption{semester}}\\
+    \end{flushleft}%
+\end{minipage}%
+\end{center}%
+\end{figure}%
+\vspace*{2cm}
+% à partir de maintenant on centre le tout
+\begin{center}
+    % Titre
+    \begin{topbot}[linewidth=1mm]
+        \centering
+        \TitleMain{\getTitleOption{title}} \\[0.5cm]
+        \SubtitleMain{\getTitleOption{subtitle}}\\
+    \end{topbot}
+\end{center}    
+
+% Espace en-tête et titre
+\vspace*{1cm}
+\begin{center}%
+\begin{minipage}[t]{0.45\textwidth}\centering%
+\vspace*{-\dimexpr\baselineskip+\heavyrulewidth+\abovetopsep\relax}%
+    \begin{tabular}{l}%
+        \multicolumn{1}{c}{\textbf{Auteur(s)}\vspace*{0.5cm}}\\%
+        \displayAuthors{}%
+    \end{tabular}%
+\end{minipage}%
+\hspace{1cm}%
+\begin{minipage}[t]{0.45\textwidth}%
+\vspace*{-\dimexpr\baselineskip+\heavyrulewidth+\abovetopsep\relax}%
+    \begin{center}%
+    \adjustbox{valign=t}{%
+    \begin{tabular}{l}%
+        \multicolumn{1}{c}{\textbf{Éditeur(s)}\vspace*{0.5cm}}\\%
+        \displayEditors{}%
+    \end{tabular}}%
+    \end{center}%
+\end{minipage}%
+\end{center}%
+
+% Footer, date and location
+\vspace{\fill}
+\begin{center}
+    \normalsize{\getTitleOption{location}, le \getTitleOption{date}}
+    \HRule
+\end{center}
+\end{titlepage} % Bottom of the page

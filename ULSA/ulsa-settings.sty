@@ -1,0 +1,50 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{ULSA/ulsa-settings}[2018/06/01 v1.0)]
+
+% ## ULSA - Language (polyglossia.sty)
+\setmainlanguage{french}
+
+
+% ## ULSA - Fonts
+\setmainfont[ExternalLocation=ULSA/Fonts/]{corbel.ttf}[%
+BoldFont=corbelb.ttf,
+ItalicFont=corbeli.ttf,
+BoldItalicFont=corbelz.ttf,
+]
+
+\newfontfamily{\HeaderFont}[ExternalLocation=ULSA/Fonts/]{KeepCalm-Medium.ttf}
+
+
+% ## ULSA - Colors
+%\definecolor{ulsa}{RGB}{68,84,106}
+%\definecolor{ulsadark}{HTML}{0B0A2B}
+%\definecolor{ulsalight}{HTML}{3634CD}
+%\definecolor{ulsasuperlight}{HTML}{d0d0fd}
+
+% ## ULSA - Colors
+\definecolor{ulsa}{HTML}{080695}
+\definecolor{ulsadark}{HTML}{0B0A2B}
+\definecolor{ulsalight}{HTML}{3634CD}
+\definecolor{ulsasuperlight}{HTML}{d0d0fd}
+
+\definecolor{warning}{HTML}{f5d8b2}
+
+
+% ## ULSA - Section numbering and referencing
+\setcounter{secnumdepth}{3}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+% Ajout de la section à la citation de la sous section
+\makeatletter
+\renewcommand\@seccntformat[1]{\csname the#1\endcsname.\quad}
+\renewcommand\p@subsection{\thesection.}
+\makeatother
+
+
+% ## ULSA - Table of content
+\usepackage{tocloft}
+\setlength{\cftsecnumwidth}{2em}
+\setlength{\cftsubsecnumwidth}{1.5em}% default is 2.3em
+\def\cftsecaftersnum{.}
+\def\cftsubsecaftersnum{.}
