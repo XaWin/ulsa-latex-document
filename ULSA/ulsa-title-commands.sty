@@ -1,0 +1,221 @@
+%
+% ULSA TITLE COMMANDS
+%
+% Dependencies :
+% - File, ULSA/Exts/modules.csv
+%
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{ULSA/ulsa-title-commands}[2018/08/21 v0.1)]
+\usepackage{stringstrings}
+\usepackage{datatool}
+
+\newcommand{\makecustomtitle} {
+    \newgeometry{margin = 2.5cm} % Reset the margins for the title
+    \import{ULSA/}{ulsa-title-view.tex}%
+    \restoregeometry%
+}
+
+% --- --- --- --- --- --- --- --- --- --- --- ---
+% Formatting Title Field
+% --- --- --- --- --- --- --- --- --- --- --- ---
+% Title
+\newcommand{\UlsaTitleFormattedTitle}{%
+    \LARGE{\textHeader{\textcolor{ulsa}{\getTitleOption{title}}}}%
+}
+% Subtitle (optional)
+\newcommand{\UlsaTitleFormattedSubtitle}{%
+% Assumption, there is already a title above, we can breakline
+    \IfIsInDB{dbUlsaTitleOptions}{subtitle}{%
+        \\[0.5cm] \large{{\getTitleOption{subtitle}}}}{}%
+}
+
+
+\newcommand{\UlsaTitleFormattedAssociationHeader}{%
+    \LARGE{\textHeader{\textcolor{ulsa}{Unidistance Law Student Association}}}
+}
+
+% Header Information
+\newcommand{\UlsaTitleFormattedModuleInfo}{%
+    \normalsize{\textHeader{Module \getTitleOption{module}}}\\%
+    \normalsize{\textHeader{\getTitleOption{moduleName}}}\\[0.5cm]%
+    \normalsize{\textHeader{\getTitleOption{semester}}}\\%
+}%
+
+\newcommand{\UlsaTitleFormattedAuthorInfo}{%
+    \begin{tabular}{l}%
+        \multicolumn{1}{c}{\textbf{\ifthenelse{\DTLrowcount{authorlist}>1}{Auteurs}{Auteur}}\vspace*{0.5cm}}\\%
+        \ifthenelse{\equal{\DTLrowcount{authorlist}}{0}}
+            {\textit{Auteur anonyme}}
+            {\DTLsort{last}{authorlist}% Sort list by name
+            \DTLforeach*{authorlist}{\LastName=last,\FirstName=first}{%
+            \FirstName \: \textsc{\LastName} \\ }}% % Print each item
+    \end{tabular}%
+}
+
+\newcommand{\UlsaTitleFormattedEditorInfo}{%
+    \begin{tabular}{l}%
+        \multicolumn{1}{c}{\textbf{\ifthenelse{\DTLrowcount{editorlist}>1}{Éditeurs}{Éditeur}}\vspace*{0.5cm}}\\%
+        \ifthenelse{\equal{\DTLrowcount{editorlist}}{0}}%
+            {ULSA / \textit{Sans éditeur}}%
+            {\DTLsort{last}{editorlist}% Sort list by name
+            \DTLforeach*{editorlist}{\LastName=last,\FirstName=first}{%
+            \FirstName \: \textsc{\LastName}\\ }}% % Print each item
+    \end{tabular}%
+}
+
+\newcommand{\UlsaTitleFormattedDatelocation}{%
+    \normalsize{\getTitleStringLocation, le\getTitleStringDate{}}%
+}%
+
+% --- --- --- --- --- --- --- --- --- --- --- ---
+% Formatting Title Field (Internals)
+% --- --- --- --- --- --- --- --- --- --- --- ---
+\newcommand{\TitleHeader}[1]{\LARGE{\textHeader{\textcolor{ulsa}{#1}}}}
+\newcommand{\SubtitleHeader}[1]{\normalsize{\textHeader{#1}}}
+\newcommand{\TitleMain}[1]{\TitleHeader{#1}}
+\newcommand{\SubtitleMain}[1]{\large{#1}}
+
+
+%
+% Hardcoded Values Database
+%
+\DTLnewdb{dbUlsaSemester}
+\DTLnewrow{dbUlsaSemester}
+\DTLnewdbentry{dbUlsaSemester}{key}{SP}
+\DTLnewdbentry{dbUlsaSemester}{value}{Semestre de Printemps}
+\DTLnewdbentry{dbUlsaSemester}{short}{SP}
+\DTLnewrow{dbUlsaSemester}
+\DTLnewdbentry{dbUlsaSemester}{key}{SA}
+\DTLnewdbentry{dbUlsaSemester}{value}{Semestre d'Automne}
+\DTLnewdbentry{dbUlsaSemester}{short}{SA}
+
+%
+% External Texts retrieval
+%
+% This file must be UTF-8 encoded
+\DTLsetseparator{;}
+\DTLloaddb{dbUlsaModule}{ULSA/Exts/modules.csv}
+
+
+
+% --- --- --- --- --- --- --- --- --- --- --- ---
+% Title fields assignment
+% --- --- --- --- --- --- --- --- --- --- --- ---
+
+% High level commands
+\newcommand{\setUlsaModule}[1]{%
+    % retrieving the module
+    \setTitleOption{module}{\DTLfetch{dbUlsaModule}{shortcode}{#1}{module}}%
+    % retrieving the module name and adding it to document options
+    \setTitleOption{moduleName}{\DTLfetch{dbUlsaModule}{shortcode}{#1}{name}}
+}
+
+\newcommand{\setUlsaSemester}[2]{%
+    \setTitleOption{semester}{\getSemesterString{#1}\:#2}%
+    \setTitleOption{semesterShort}{\getSemesterShortString{#1}#2}%
+}
+
+\newcommand{\setUlsaTitle}[1]{%
+    \setTitleOption{title}{#1}%
+}
+
+\newcommand{\setUlsaSubtitle}[1]{%
+    \setTitleOption{subtitle}{#1}%
+}
+
+\newcommand{\setUlsaDate}[1]{%
+    \setTitleOption{date}{#1}%
+}
+
+\newcommand{\setUlsaLocation}[1]{%
+    \setTitleOption{location}{#1}%
+}
+
+
+% --- --- --- --- --- --- --- --- --- --- --- ---
+% Title fields retrieval
+% --- --- --- --- --- --- --- --- --- --- --- ---
+\newcommand{\getModuleSemesterShort}{%
+    \getTitleOption{module}/\getTitleOption{semesterShort}%
+}
+
+\newcommand{\getSemesterString}[1]{%
+    \caseupper[q]{#1}%
+    \def\tmpA{\DTLfetch{dbUlsaSemester}{key}}%
+    \expandafter\tmpA\expandafter{\thestring}{value}%
+}
+
+\newcommand{\getSemesterShortString}[1]{%
+    \caseupper[q]{#1}%
+    \def\tmpA{\DTLfetch{dbUlsaSemester}{key}}%
+    \expandafter\tmpA\expandafter{\thestring}{short}%
+}
+
+\newcommand{\getTitleStringLocation}{%
+    \IfIsInDB{dbUlsaTitleOptions}{location}{\getTitleOption{location}}{Brigue}%
+}
+
+\newcommand{\getTitleStringDate}{%
+    \IfIsInDB{dbUlsaTitleOptions}{date}{\getTitleOption{date}}{\today}%
+}
+
+% Lower Level commands
+
+%
+% Code for data handling
+%
+\DTLnewdb{dbUlsaTitleOptions}
+\newcommand{\setTitleOption}[2]{%
+    \DTLnewrow{dbUlsaTitleOptions}%
+    \DTLnewdbentry{dbUlsaTitleOptions}{key}{#1}%
+    \DTLnewdbentry{dbUlsaTitleOptions}{value}{#2}%
+}
+\newcommand{\getTitleOption}[1]{%
+    \DTLfetch{dbUlsaTitleOptions}{key}{#1}{value}%
+}
+
+
+% --- --- --- --- --- --- --- --- --- --- --- ---
+% Editors DB handling
+% --- --- --- --- --- --- --- --- --- --- --- ---
+\DTLnewdb{editorlist} % DB Init for editor
+% Adding an editor
+\newcommand{\addEditor}[2]{%
+    \DTLnewrow{editorlist}%
+    \DTLnewdbentry{editorlist}{first}{#1}%
+    \DTLnewdbentry{editorlist}{last}{#2}%
+}%
+
+% --- --- --- --- --- --- --- --- --- --- --- ---
+% Authors Listing
+% --- --- --- --- --- --- --- --- --- --- --- ---
+\DTLnewdb{authorlist} % DB Init for author
+% Adding an author
+\newcommand{\addAuthor}[2]{%
+    \DTLnewrow{authorlist}
+    \DTLnewdbentry{authorlist}{first}{#1}
+    \DTLnewdbentry{authorlist}{last}{#2}
+}
+
+% --- --- --- --- --- --- --- --- --- --- --- ---
+% Deep TeX upgrade for If conditional on database entries
+% --- --- --- --- --- --- --- --- --- --- --- ---
+\makeatletter
+% Patch \DTLgetlocation to gobble the error
+\let\ErrorFreeDTLgetlocation\DTLgetlocation%
+\patchcmd{\ErrorFreeDTLgetlocation}{\PackageError}{\@gobbletwo}{}{}%
+\def\@@dtlnovalue{\@dtlnovalue}%
+% Conditional on Existence of entry in DB
+\newcommand*{\IfIsInDB}[4]{
+    % #1 = DB name, #2 = member to check for
+    % #3 = code to execute if member is in DB
+    % #4 = code to execute if member is not in DB
+    \ErrorFreeDTLgetlocation{\RowIndex}{\ColIndex}{#1}{#2}
+    \ifx\RowIndex\@@dtlnovalue
+        #4%
+    \else
+        #3
+    \fi
+}
+\makeatother

@@ -11,7 +11,7 @@
 
 % Misc, unknown
 \usepackage[export]{adjustbox}
-\usepackage[margin=2.5cm]{geometry}
+\usepackage[top=1.5cm,right=1.8cm,bottom=1.8cm,left=2cm,includeheadfoot]{geometry}
 \usepackage[section]{placeins}
 
 % For all the tabular and other table
@@ -24,13 +24,19 @@
 
 % Creation of lists and other commands for editors/authors
 \usepackage{datatool}% http://ctan.org/pkg/datatool
+\usepackage{parskip}
 
 % -- Custom Package --
 \usepackage{silence}
 
+\usepackage{marginnote}
+
+\usepackage{titlesec}
+\titleformat*{\subsubsection}{\large\bfseries\color{ulsa}}
 
 % New or Updated Commands
 \usepackage{ULSA/ulsa-commands}
-
-% Settings
 \usepackage{ULSA/ulsa-settings}
+
+% Standalone commands for Title
+\usepackage{ULSA/ulsa-title-commands}
