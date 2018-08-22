@@ -2,31 +2,8 @@
 % Do Not Edit - Main file
 %
 \documentclass[12pt,a4paper]{article}
-\usepackage{ULSA/Modele}
+\usepackage{ULSA/UlsaStyle}
 \usepackage{Commandes}
-
-
-\usepackage{lastpage}
-
-\usepackage{fancyhdr}
-
-\fancypagestyle{main}{%
-    \fancyhf{}%
-    \fancyfoot[L]{\textbf{\getModuleSemesterShort{}}}
-    \fancyfoot[C]{\textsc{\nouppercase{\rightmark}}}
-    \fancyfoot[R]{\textbf{\thepage/\pageref{LastPage}}}
-    \renewcommand{\headrulewidth}{0pt} 
-    \renewcommand{\footrulewidth}{0pt}   
-}
-
-\fancypagestyle{preamble}{%
-    \fancyhf{}%
-    \fancyfoot[C]{\thepage}
-    \renewcommand{\headrulewidth}{0pt} 
-    \renewcommand{\footrulewidth}{0pt}   
-}
-\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{preamble}}} 
-
 
 \begin{document}
 \pagenumbering{Roman}

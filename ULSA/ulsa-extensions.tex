@@ -1,0 +1,48 @@
+% https://tex.stackexchange.com/questions/122871/include-svg-images-with-the-svg-package/129854
+% Definition for Warning Boxes
+\mdfdefinestyle{warn}{%
+  roundcorner=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,  
+  middlelinewidth=0pt,  
+  skipabove=10pt
+  skipbelow=10pt
+  leftmargin=20pt,
+  rightmargin=20pt,
+  backgroundcolor=warning,
+  font=\normalfont\large,
+}
+
+% Definition for Warning Boxes
+\mdfdefinestyle{info}{%
+  roundcorner=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  innerleftmargin=10pt,  
+  middlelinewidth=0pt,  
+  skipabove=10pt
+  skipbelow=10pt
+  leftmargin=20pt,
+  rightmargin=20pt,
+  backgroundcolor=ulsasuperlight,
+  font=\normalfont\large,
+}
+
+\newcommand{\attention}[1]{%
+  \begin{mdframed}[style=warn]
+  \begin{minipage}[c]{2cm}
+    \includesvg[width=1.5cm,height=1.5cm]{ULSA/Exts/warning}
+  \end{minipage}%
+  \begin{minipage}[c]{\textwidth-2.5cm}#1\end{minipage}
+  \end{mdframed}
+}
+
+\newcommand{\information}[1]{%
+  \begin{mdframed}[style=info]
+  \begin{minipage}[c]{2cm}
+    \includesvg[width=1.5cm,height=1.5cm]{ULSA/Exts/info}
+  \end{minipage}%
+  \begin{minipage}[c]{\textwidth-2.5cm}#1\end{minipage}
+  \end{mdframed}
+}

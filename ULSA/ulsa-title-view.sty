@@ -1,6 +1,6 @@
 \newmdenv[leftline=false,rightline=false,linecolor=ulsa,innertopmargin=1cm,innerbottommargin=1cm]{topbot}
 
-\begin{titlepage} % Start of page
+\renewcommand{\maketitle}{%
 \begin{figure}[!h]
 \begin{center}
  \begin{minipage}[t]{0.5\textwidth}
@@ -19,10 +19,10 @@
 % à partir de maintenant on centre le tout
 \begin{center}
     % Titre
-    \begin{topbot}[linewidth=1mm]
-        \centering
-        \UlsaTitleFormattedTitle{} % ulsa-title-commands
-        \UlsaTitleFormattedSubtitle{} % ulsa-title-commands
+    \begin{topbot}[linewidth=1mm]%
+        \centering%
+        \UlsaTitleFormattedTitle{}% ulsa-title-commands
+        \UlsaTitleFormattedSubtitle{}% ulsa-title-commands
     \end{topbot}
 \end{center}    
 
@@ -31,7 +31,7 @@
 \begin{center}%
 \begin{minipage}[t]{0.45\textwidth}\centering%
 \vspace*{-\dimexpr\baselineskip+\heavyrulewidth+\abovetopsep\relax}%
-    \UlsaTitleFormattedAuthorInfo{}
+    \UlsaTitleFormattedAuthorInfo{}%
 \end{minipage}%
 \hspace{1cm}%
 \begin{minipage}[t]{0.45\textwidth}%
@@ -42,10 +42,10 @@
 \end{minipage}%
 \end{center}%
 % Filling the remaining space
-\vspace{\fill}
+\vspace{\fill}%
 % Footer, date and location
-\begin{center}
+\begin{center}%
     \UlsaTitleFormattedDatelocation{}\\%
-    \textcolor{ulsa}{\rule{\linewidth}{0.5mm}}
-\end{center}
-\end{titlepage} % Bottom of the page
+    \textcolor{ulsa}{\rule{\linewidth}{0.5mm}}%
+\end{center}%
+}

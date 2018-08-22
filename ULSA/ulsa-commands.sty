@@ -3,7 +3,6 @@
 
 \newcommand{\UlsaFrontMatter}{
     \makecustomtitle%
-    \stepcounter{page} % increment counter
     \clearpage%
     \makesecondpage%
     \clearpage%
@@ -15,7 +14,7 @@
     \addcontentsline{toc}{section}{Clause de décharge}
     \UlsaDisclaimer{}
     \vspace{\fill}
-    \section*{mentions légales}
+    \section*{Mentions légales}
     \UlsaCopyright{}%
 }
 
@@ -31,58 +30,7 @@ L'ULSA recevra volontiers vos commentaires ou corrections. Merci de prendre cont
 }
 
 \newcommand{\UlsaCopyright}{%
-l'Unidistance Student Law Association (ULSA) est une association à but non lucratif fondée selon le Code Civil suisse, article 60 ss. L'ULSA est domiciliée à Überlandstrasse 12, 3900 Brigue et peut être contactée via son site (www.ulsa.ch).\par
+L'Unidistance Student Law Association (ULSA) est une association à but non lucratif fondée selon le Code Civil suisse, article 60 ss. L'ULSA est domiciliée à Überlandstrasse 12, 3900 Brigue et peut être contactée via son site (www.ulsa.ch).\par
 Tous droits réservés. Toute traduction, reproduction, représentation ou adaptation intégrale ou partielle de cette publication, par quelque procédé que ce soit (graphique, électronique ou mécanique, y compris impression, photocopie ou capture d'écran), et toutes formes d'enregistrement sont strictement interdites sans l'autorisation expresse et écrite de l'éditeur.\par
-\copyright Association ULSA, Brigue 2018%
-\
-}
-
-% https://tex.stackexchange.com/questions/122871/include-svg-images-with-the-svg-package/129854
-
-% Definition for Warning Boxes
-\mdfdefinestyle{warn}{%
-  roundcorner=10pt,
-  innertopmargin=10pt,
-  innerbottommargin=10pt,
-  innerleftmargin=10pt,  
-  middlelinewidth=0pt,  
-  skipabove=10pt
-  skipbelow=10pt
-  leftmargin=20pt,
-  rightmargin=20pt,
-  backgroundcolor=warning,
-  font=\normalfont\large,
-}
-
-% Definition for Warning Boxes
-\mdfdefinestyle{info}{%
-  roundcorner=10pt,
-  innertopmargin=10pt,
-  innerbottommargin=10pt,
-  innerleftmargin=10pt,  
-  middlelinewidth=0pt,  
-  skipabove=10pt
-  skipbelow=10pt
-  leftmargin=20pt,
-  rightmargin=20pt,
-  backgroundcolor=ulsasuperlight,
-  font=\normalfont\large,
-}
-
-\newcommand{\attention}[1]{%
-  \begin{mdframed}[style=warn]
-  \begin{minipage}[c]{2cm}
-    \includesvg[width=1.5cm,height=1.5cm]{ULSA/Exts/warning}
-  \end{minipage}%
-  \begin{minipage}[c]{\textwidth-2.5cm}#1\end{minipage}
-  \end{mdframed}
-}
-
-\newcommand{\information}[1]{%
-  \begin{mdframed}[style=info]
-  \begin{minipage}[c]{2cm}
-    \includesvg[width=1.5cm,height=1.5cm]{ULSA/Exts/info}
-  \end{minipage}%
-  \begin{minipage}[c]{\textwidth-2.5cm}#1\end{minipage}
-  \end{mdframed}
+\copyright~Association ULSA, Brigue 2018%
 }

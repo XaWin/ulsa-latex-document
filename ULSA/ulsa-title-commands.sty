@@ -9,10 +9,13 @@
 \ProvidesPackage{ULSA/ulsa-title-commands}[2018/08/21 v0.1)]
 \usepackage{stringstrings}
 \usepackage{datatool}
+\usepackage{ULSA/ulsa-title-view}
 
 \newcommand{\makecustomtitle} {
     \newgeometry{margin = 2.5cm} % Reset the margins for the title
-    \import{ULSA/}{ulsa-title-view.tex}%
+    %\import{ULSA/}{ulsa-title-view.tex}%
+    \thispagestyle{empty}
+    \maketitle%
     \restoregeometry%
 }
 
