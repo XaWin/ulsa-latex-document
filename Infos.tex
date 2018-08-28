@@ -2,30 +2,30 @@
 %   Paramètrage du titre & des informations du document   %
 % --- --- --- --- --- --- --- --- --- --- --- --- --- --- %
 % La matière se définit comme la période durant laquelle
-% Exemple : un examen de Juin 2016 reçu en 2018 serait
 
 
 %       1. MODULE
-% Choix du module, format mxx (en minuscule, avec zéro si besoin)
-\setUlsaModule{m00}
+% Choix du module, format mxx (en minuscule, avec zéro devant si besoin ex. 01)
+\setUlsaModule{m01}
 
 
 %       2. SEMESTRE RELATIF A LA MATIERE DU DOCUMENT
 % 1er champ : choix du semestre (SA) ou (SP)
 % 2ème champ : choix de l'année de référence, en format 4 chiffre
+% Exemple : un examen de Juin 2018 serait donc {SP}{2018}
 \setUlsaSemester{SP}{2018}
 
 
 %       3. TITRE DU DOCUMENT
-\setUlsaTitle{Exemplaire de travail propédeutique}
+\setUlsaTitle{Un titre}
 
 
 %       3b. SOUS-TITRE DU DOCUMENT (Optionel)
-\setUlsaSubtitle{Évaluation et corrections du travail portant l'action en paiement non chiffrée (CPC 85)}
+\setUlsaSubtitle{Un sous-titre}
 
 %       4. AUTEUR(S)
 % Un auteur est une personne ayant rédigé le texte
-\addAuthor{Xavier}{Winterhalter}
+%\addAuthor{Prénom}{Nom}
 
 
 %       5. EDITEUR(S) (optionel)
@@ -36,4 +36,4 @@
 %       6. DATE ET LIEU DE PRODUCTION (optionel)
 % Lieu par défaut: Brig // Date par défaut: le jour même
 %\setUlsaDate{21 août 2018}
-\setUlsaLocation{Zürich}
+%\setUlsaLocation{Fribourg}

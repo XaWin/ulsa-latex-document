@@ -1,3 +1,27 @@
+%
+% PDF Import
+%
+\newcommand{\UlsaPdfNewSection}[3][-]{%
+    \addtocounter{section}{1}%
+    \addcontentsline{toc}{section}{\protect\numberline{\thesection}#3}%
+    \markboth{}{\thesection.~#3}
+    \includepdf[frame,pages={#1},width=\textwidth,pagecommand={}]{#2}%
+}
+
+\newcommand{\UlsaPdfNewSubsection}[3][-]{%
+    \addtocounter{subsection}{1}%
+    \addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}#3}%
+    \markboth{}{\thesection.\thesubsection~#3}
+    \includepdf[frame,pages={#1},width=\textwidth,pagecommand={}]{#2}%
+}
+
+\newcommand{\UlsaPdfAppend}[2][-]{%
+    \includepdf[frame,pages={#1},width=\textwidth,pagecommand={}]{#2}%
+}
+
+
+
+
 % https://tex.stackexchange.com/questions/122871/include-svg-images-with-the-svg-package/129854
 % Definition for Warning Boxes
 \mdfdefinestyle{warn}{%
@@ -46,3 +70,5 @@
   \begin{minipage}[c]{\textwidth-2.5cm}#1\end{minipage}
   \end{mdframed}
 }
+
+
